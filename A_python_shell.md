@@ -15,3 +15,4 @@ threading.Thread(target=方法名,args=(参数,)).start()
 pip list
 NameParaments
 str = or or or
+元组 数值

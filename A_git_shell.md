@@ -6,7 +6,7 @@ git add .
 git commit -m "add: update: test: docs: remove: create: fix: change：release: merge: chore: "
 git status 
 git pull --rebase
-git push [r_name 远端_master]
+git push [-u r_name 本地/远端_master]
 git branch 
 git remote
 git branch -d b_name
