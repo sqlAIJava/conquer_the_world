@@ -19,3 +19,9 @@ git config --global user.name(user.email) ""
 git push origin(远端在本地的名字) dev(本地的分支名)：dev(远端要新建的分支名)
 git push origin :dev  删除远端的dev分支
 git push origin --delete dev 同上
+
+# 2020-11-20
+git checkout -b dev（本地新建分支） origin/dev(远端分支名) 
+git clone 理解把远端的分支全拉了下来只不过是master在本地，想切换用上面一行命令，原因上一行命令打印日志并没有下载的记录Branch dev set up to track remote branch dev from origin.Switched to a new branch 'dev'
+gitk 图形化历史界面
+同一个文件下，分支切换，文件夹会发生变化
