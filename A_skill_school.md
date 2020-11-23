@@ -60,3 +60,8 @@ ops
 
 - [ ] 13.Jenkins + GoCD
 
+- [ ] 14.版本对应表示
+        ```
+        SNAPSHOT 快照版
+        RELEASE  正式版
+        ```

@@ -12,3 +12,18 @@ poc webhook 编排 esb 钩子函数 监听者
 
 # 2020-11-19
 链路思考 如 从想买到买完用了一段时间
+
+# 2020-11-23
+知识图谱
+    ```
+    数据+知识的存储和可视化
+    RDF，OWL,Turtle
+        API 
+    对比图数据库
+        Neo4j MongoDB 
+    本体可视化工具
+        Protege,Graphvi(dot)
+    ```
+
+
+

@@ -15,3 +15,11 @@ docker search images-name
 
 # 2020-11-12
 docker update --restart=always <container id>
+
+# 2020-11-23
+docker save 名 > 名.tar
+docker load < 文件路径
+docker-compose.yml 构建文件
+docker-compose stop
+docker-compose up -d
+增量更新 另起一个 前提依赖requirements.txt 不变

@@ -25,3 +25,9 @@ git checkout -b dev（本地新建分支） origin/dev(远端分支名)
 git clone 理解把远端的分支全拉了下来只不过是master在本地，想切换用上面一行命令，原因上一行命令打印日志并没有下载的记录Branch dev set up to track remote branch dev from origin.Switched to a new branch 'dev'
 gitk 图形化历史界面
 同一个文件下，分支切换，文件夹会发生变化
+
+# 2020-11-23
+git remote -v 查看详细的远端配置
+git pull <remote> <branch>
+git branch --set-upstream-to=origin/<branch> master
+git push origin HEAD:main 当远端名字和本地名字不一致时

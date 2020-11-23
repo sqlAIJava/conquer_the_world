@@ -18,3 +18,6 @@ vim :wq 保存并退出
 ## 2020-11-11
 sudo apt-get update
 ls -l /usr/bin | grep python
+
+## 2020-11-23
+scp 文件名 远端服务器:/用户
