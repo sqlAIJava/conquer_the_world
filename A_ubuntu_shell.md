@@ -21,3 +21,8 @@ ls -l /usr/bin | grep python
 
 ## 2020-11-23
 scp 文件名 远端服务器:/用户
+
+## 2020-11-24
+shutdown -r now 
+reboot
+shutdown -h now
