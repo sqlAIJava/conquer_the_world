@@ -31,3 +31,10 @@ git remote -v 查看详细的远端配置
 git pull <remote> <branch>
 git branch --set-upstream-to=origin/<branch> master
 git push origin HEAD:main 当远端名字和本地名字不一致时
+
+# 2020-11-27
+git reflog
+git pull origin master --allow-unrelated-histories
+git remote add vm2 azureuser@40.73.36.88:~/gitrepo/testgremlinapi.
+git
+服务器变成仓库的？

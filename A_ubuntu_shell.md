@@ -26,3 +26,14 @@ scp 文件名 远端服务器:/用户
 shutdown -r now 
 reboot
 shutdown -h now
+
+# 2020-11-27
+ssh 地址
+tmux a 分屏root权限
+exit gi
+tig
+crtl b c / w  j/k 
+vim 改代码
+tmux win panel 
+git tig
+tmux
