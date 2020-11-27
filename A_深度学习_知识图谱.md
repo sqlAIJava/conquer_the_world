@@ -202,3 +202,17 @@ Azure Cosmos DB Emulator 本地模拟器
 
 
 ## 36节知识看起
+知识图谱 是什么
+string 顶点 边缘  
+实体
+    真实世界对象
+    抽象概念
+
+领域类
+    
+公安 金融 对话
+spark 算法 free
+
+可是化 D3 Cytoscape.js 
+
+* 基于模型 一些算法（图形挖掘） 怎么写 代码？ *
