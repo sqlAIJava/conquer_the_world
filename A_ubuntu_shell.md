@@ -33,7 +33,10 @@ tmux a 分屏root权限
 exit gi
 tig
 crtl b c / w  j/k 
+crtl b " / %
+crtl b 反向键 / o 
+crtl b z 
 vim 改代码
-tmux win panel 
+tmux win pane 
 git tig
 tmux

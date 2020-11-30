@@ -20,4 +20,20 @@ Gradle
         resolutionStrategy.cacheChangingModulesFor 0,"secondes/minutes/hours"
     }
     ```
-    
+
+# 2020-11-30
+打包
+sh mvnw package
+启动main入口函数程序
+sh mvnw exec:java@SYNCASYNCMODE -DACCOUNT_HOST=YOUR_COSMOS_DB_HOSTNAME -DACCOUNT_KEY=YOUR_COSMOS_DB_MASTER_KEY
+mvn exec:java -D exec.mainClass=GetStarted.Program
+    ```
+    exec 运行
+    ```
+
+屏蔽test环节
+    mvn package/install -Dmaven.test.skip=true
+
+启动springboot项目
+    mvn spring-boot:run
+
