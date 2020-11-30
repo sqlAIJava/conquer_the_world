@@ -1,5 +1,7 @@
 # 忽略所有文件夹
-*_*/
+A_note/
+HMT_RealWear/
+z_lichengwei/
 
 # 忽略.txt文件
 *.txt
