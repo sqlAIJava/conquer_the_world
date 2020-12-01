@@ -37,3 +37,9 @@ mvn exec:java -D exec.mainClass=GetStarted.Program
 启动springboot项目
     mvn spring-boot:run
 
+指定profiles active 配置环境
+```
+mvn spring-boot:run -Ptest 指定mvn的 一般打包用 配合 build 对应的 构建指定文件
+mvn spring-boot:run -Dspring-boot.run.profiles=test 直接指定springboot启动的环境
+java -jar -Dspring.proflies.active=test xxx.jar jar包启动指定方式
+```
