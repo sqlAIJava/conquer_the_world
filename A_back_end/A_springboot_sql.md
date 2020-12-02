@@ -16,3 +16,32 @@ this.getClass().getResourceAsStream("/db/test.sql");
 -Dspring-boot.run.profiles=
 -Dspring.profiles.active=
 
+# 2020-12-2
+自定义注解Annotations
+@Target(ElementType.) 作用目标
+@Retention(RetentionPolicy) 保留位置 
+```
+.java -> .class -> jvm
+SOURCE    CLASS    RUNTIME
+```
+@Document javadoc文档中
+@Inherited 子类会继承父类的该注解
+
+JWT
+```
+登陆后密码加密
+    对接口权限可校验
+        只有是我的用户 才能请求我的接口 接口拦截
+        对 服务 + 资源 访问进行验证
+    对身份验证 不带密码 验证
+        降低 携带 密码 泄露
+    经过签名，发的消息 没有经过伪装
+        ！知道token 就可以模拟
+    SSO单点登陆 
+优点
+    简介 header 小 快
+    自包含 请求自己包含 避免多次查询数据库 ？
+    JSON跨语言
+    服务端不保存会话 分布式微服务使用
+```
+

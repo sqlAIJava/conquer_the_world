@@ -105,3 +105,7 @@ touch > java.java
 拷贝
 ```
 ```
+
+# 2020-12-2
+GNU 内核
+nano 命令
