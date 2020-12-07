@@ -45,3 +45,6 @@ JWT
     服务端不保存会话 分布式微服务使用
 ```
 
+# 2020-12-4
+RestTemplate 请求
+@PostConstruct 快速构建 项目启动及执行

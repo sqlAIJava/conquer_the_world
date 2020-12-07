@@ -109,3 +109,12 @@ touch > java.java
 # 2020-12-2
 GNU 内核
 nano 命令
+
+# 2020-12-4
+tmux 关闭windows 
+tmux ls
+tmux kill-window -t <id>
+exit 退出 也能 关闭pane
+
+命令行请求 设置 方式 头部信息 参数 结果换行
+curl url -X POST -H "token:asdas" -d 'xxxxxx' -w '\n'
