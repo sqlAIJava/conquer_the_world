@@ -118,3 +118,7 @@ exit 退出 也能 关闭pane
 
 命令行请求 设置 方式 头部信息 参数 结果换行
 curl url -X POST -H "token:asdas" -d 'xxxxxx' -w '\n'
+
+# 2020-12-9
+解压.gz文件
+gzip -d xxx.gz 
