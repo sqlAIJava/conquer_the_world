@@ -216,3 +216,8 @@ spark 算法 free
 可是化 D3 Cytoscape.js Ecahrt
  
 * 基于模型 一些算法（图形挖掘） 怎么写 代码？ *
+
+## 2020-12-14
+TinkerPop客户端服务端
+Java代码调用
+Gremlin和Neo4j
