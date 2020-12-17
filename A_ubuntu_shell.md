@@ -122,3 +122,16 @@ curl url -X POST -H "token:asdas" -d 'xxxxxx' -w '\n'
 # 2020-12-9
 解压.gz文件
 gzip -d xxx.gz 
+
+# 2020-12-15
+tmux 操作
+直接tmux 会新建界面
+tmux ls 查看
+tmux kill-window -t <id> 
+tmux at -t <id>
+ctrl b
+    & y     关闭窗口
+
+exit 针对 bash 子程序
+
+出 不关闭 ctrl b / d 
