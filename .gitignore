@@ -6,3 +6,5 @@ z_lichengwei/
 # 忽略.txt文件
 *.txt
 
+.history
+
