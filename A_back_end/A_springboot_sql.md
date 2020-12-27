@@ -48,3 +48,8 @@ JWT
 # 2020-12-4
 RestTemplate 请求
 @PostConstruct 快速构建 项目启动及执行
+
+# 2020-12-27
+new Thread(()->{
+    // TODO something
+}).start();
