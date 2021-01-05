@@ -35,7 +35,7 @@ tig
 crtl b c / w  j/k 
 crtl b " / %  exit
 crtl b 反向键 / o 
-crtl b z 
+crtl b z 放大pane
 crtl b [    page Up /Down
 vim 改代码
 tmux win pane 
