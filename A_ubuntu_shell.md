@@ -82,6 +82,9 @@ curl中文乱码
  curl -G --data-urlencode "question=asdasd问题sssas" http://10.0.1.11:8080/api/search  
 ```
 
+curl 打印html标签
+curl  url -k 
+
 删除
 ```
 rm -r向下递归f强行删除
@@ -134,4 +137,23 @@ ctrl b
 
 exit 针对 bash 子程序
 
+tmux出去不关闭
 出 不关闭 ctrl b / d 
+
+# 2021-1-7
+实时查看文件
+    tail -f ***.log
+
+命令行换行 \ 回车
+
+拷贝一个文件到服务器
+sftp
+scp
+
+sftp连接服务器
+sftp -P 端口 用户@ip
+
+查看进程起来没
+ps aux | grep gun
+查看网咯端口又没被占用
+netstat -anp | grep 8000

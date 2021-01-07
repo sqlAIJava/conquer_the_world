@@ -38,3 +38,6 @@ git pull origin master --allow-unrelated-histories
 git remote add vm2 azureuser@40.73.36.88:~/gitrepo/testgremlinapi.
 git
 服务器变成仓库的？
+
+# 2021-1-7
+git checkout . 一般用于调试还原

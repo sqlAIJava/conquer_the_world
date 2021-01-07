@@ -15,5 +15,4 @@
 集合.index = value
 
 除去空的
-    数值 = 数组.filter(e=>!!e)
-
+    数值 = 数组.filter(e=>!!e
