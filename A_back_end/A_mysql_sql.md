@@ -29,3 +29,11 @@ alter table t_dept add unique index index_name(name);
 select version(), @@sql_mode;
 set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+# 2021-1-11
+命令连接
+mysql -P -h -r -p
+退出命令行
+quit
+mysql查找my.cnf文件
+mysql --help|grep my.cnf

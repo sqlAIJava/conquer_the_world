@@ -23,8 +23,10 @@ ls -l /usr/bin | grep python
 scp 文件名 远端服务器:/用户
 
 ## 2020-11-24
+立刻重启
 shutdown -r now 
 reboot
+立刻关机
 shutdown -h now
 
 # 2020-11-27
@@ -99,9 +101,11 @@ kill -9 70056
 
 创建
 ```
+创建文件
 mkdir java
 vi java.java
 echo > java.java
+创建文件夹
 touch > java.java
 ```
 
@@ -157,3 +161,14 @@ sftp -P 端口 用户@ip
 ps aux | grep gun
 查看网咯端口又没被占用
 netstat -anp | grep 8000
+
+# 2021-1-11
+查看ip 地址
+ip addr
+ifconfig
+
+查看防火墙状态 inactive为关闭 
+sudo ufw status
+
+重启服务
+service mysql restart
