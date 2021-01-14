@@ -121,7 +121,7 @@ nano 命令
 tmux 关闭windows 
 tmux ls
 tmux kill-window -t <id>
-exit 退出 也能 关闭pane
+exit 退出tmux 也能 关闭pane
 
 命令行请求 设置 方式 头部信息 参数 结果换行
 curl url -X POST -H "token:asdas" -d 'xxxxxx' -w '\n'
