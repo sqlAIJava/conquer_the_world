@@ -12,3 +12,11 @@
     ```
     https://inv-veri.chinatax.gov.cn/ 
     ```
+6：RPA (Robotic Process Automation) 机器人流程自动化
+    OCR (Optical Character Recognition) 光学字符识别
+   ```
+   UIPath 
+   UiBot
+   云扩RPA 
+   艺赛旗RPA
+   ```

@@ -16,3 +16,7 @@ pip list
 NameParaments
 str = or or or
 元组 数值
+
+# 2021-1-15
+启动服务器文件服务器 可指定端口  可绑定 ip 
+python -m http.server 8000 --bind 127.0.0.1 --directory /tmp/
