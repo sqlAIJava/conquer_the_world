@@ -31,8 +31,58 @@ Windows Server 2012  开多个用户  远程登陆监控
 
 考试只能周五上午考
 
-# 2021-1-19
+# 2021-2-5
 管理者
 开发者
 所有者审批
 使用者 必须要BotRoot
+
+
+# 2021-2-7
+## UiPath RPA 分享
+
+RPA 是什么 ？
+Robotic Process Automation
+机器人?  流程?     自动化?
+运行?         编写？
+
+常见应用场景
+    Web界面自动化
+    Office等文档操作
+    OCR 光学字符识别
+
+案例
+    计算客户安全hash值
+    月报生成年报
+    税务票据验真
+
+UiPath 提供开发平台/产品
+    编辑器 UiPath Studio / X / Pro
+    控制后台 UiPath Orchestrator
+    机器人助手 UiPath Assistant
+
+技术编写流程方面
+方式
+    组件拖拽
+
+语言
+    VB / C#
+
+框架
+    REF 机器人企业级框架 Robotic Enterprise Framework
+
+开发程序要的概念
+    异常处理Try 变量赋值 调用第三方库/程序Java/Python 多个程序配合工作 开发上线部署运行CI/CD 
+
+环境
+    仅限Windows 一台机器只能跑一个机器人 
+
+优点
+    快速开发“需要控制Web界面 或者 简单操作文档数据”的自动化程序业务
+    机器人代替人工完成重复性工作
+    开发简易
+
+缺点
+    windows环境
+    机器人运行时 电脑不能被其他人使用
+    运行不稳定 网络 配置 等
