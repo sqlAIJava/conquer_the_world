@@ -172,3 +172,8 @@ sudo ufw status
 
 重启服务
 service mysql restart
+
+
+PuTTY添加SSH Key
+https://cloud.tencent.com/developer/article/1471206
+
