@@ -65,3 +65,5 @@ ops
         SNAPSHOT 快照版
         RELEASE  正式版
         ```
+
+- [ ] 15.Ansible红帽
