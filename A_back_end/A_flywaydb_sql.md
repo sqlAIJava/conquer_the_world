@@ -16,3 +16,6 @@ flywaydb 便于版本 管理sql
                 baseline-on-migrate: true
                 locations: classpath:db/migration
     ```
+
+# 2021-3-19
+当一条记录失败后，需手动干预处理，记录
