@@ -53,3 +53,12 @@ RestTemplate 请求
 new Thread(()->{
     // TODO something
 }).start();
+
+# 2021-3-22
+关于参数校验
+开启校验    javax.validation.Valid
+对象集合空校验  javax.validation.constraints.NotEmpty
+参数空校验  javax.validation.constraints.NotNull
+
+401 没有访问权限，没进入系统
+403 进入系统了，没有接口权限
