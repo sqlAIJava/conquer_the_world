@@ -42,3 +42,11 @@ git
 
 # 2021-1-7
 git checkout . 一般用于调试还原
+
+# 2021-3-20
+CentOS 7 安装 git 1.8
+yum install git
+
+设置RSA Key  密钥对
+ssh-keygen
+回车后 注意 位置 .ssh
