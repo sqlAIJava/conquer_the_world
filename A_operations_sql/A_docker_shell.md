@@ -38,3 +38,31 @@ docker logs <containerName>
 docker exec -it <containerName> bash
 退出docker 容器服务 命令
 exit;
+
+# 2021-3-30
+CentOs7安装docker
+1：sudo yum install -y yum-utils 安装 软件包
+2：sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+    添加储存库
+3：sudo yum install docker-ce docker-ce-cli containerd.io 
+    安装最新版本的Docker Engine和容器
+[
+    sudo list docker-ce --showduplicates | sort -r 
+    列出储存库中的可用版本
+    sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
+    安装指定版本的Docker Engine + Containerd 
+] 
+4: 启动Docker
+    sudo systemctl start docker
+[
+    sudo docker run <containerd-name>
+    可以尝试启动一个实例
+]
+
+5：卸载Docker 
+    sudo yum remove docker-ce docker-ce-cli containerd.io
+    删除主机上的 容器，图像,卷
+    sudo rm -rf /var/lib/docker
+    sudo rm -rf /var/lib/containerd
