@@ -46,6 +46,7 @@ CentOs7安装docker
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
     添加储存库
+
 3：sudo yum install docker-ce docker-ce-cli containerd.io 
     安装最新版本的Docker Engine和容器
 [
@@ -77,6 +78,9 @@ CentOs7安装docker
 
 自动启动服务 systemd 管理系统启动时启动的服务
 sudo systemctl enable <docker.service 服务名>
+
 禁用自动启动 
 sudo systemctl disable <docker.service 服务名
 
+重启服务
+sudo systemctl restart <docker.service 服务名>
