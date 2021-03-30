@@ -66,3 +66,17 @@ CentOs7安装docker
     删除主机上的 容器，图像,卷
     sudo rm -rf /var/lib/docker
     sudo rm -rf /var/lib/containerd
+
+分配Docker 命令使用权限
+1：分组命令
+    sudo groupadd <docer 组名>
+2：添加用户进去 docker 组
+    sudo usermod -aG <docker 组名> $USER
+3：激活对组的更改
+    newgrp <docker 组名>
+
+自动启动服务 systemd 管理系统启动时启动的服务
+sudo systemctl enable <docker.service 服务名>
+禁用自动启动 
+sudo systemctl disable <docker.service 服务名
+
