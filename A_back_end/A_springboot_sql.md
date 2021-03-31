@@ -62,3 +62,20 @@ new Thread(()->{
 
 401 没有访问权限，没进入系统
 403 进入系统了，没有接口权限
+
+# 2021-3-22
+普通mvc接口到文件（如excel）
+HttpServletResponse  getOutputStream() 给这个直接写入数据 就行 记得.close();
+
+RESTful API 
+ResponseEntity<btye[]> 
+.ok()
+.contentType(MediaType.APPLICATION_OCTET_STERAM)
+.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=<文件名带后缀>")
+.body(<内容>)
+
+接口javax包 过滤 校验
+@Valid
+
+日期格式转换
+@DateTimeFOrmat(iso = <想要的标准化格式>)
