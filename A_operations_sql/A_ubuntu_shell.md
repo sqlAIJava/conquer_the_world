@@ -200,3 +200,9 @@ scp -r root@ip:/var/temp .
 
 下载多个文件
 scp root@ip:/var/\{index.html,json.js\} .
+
+# CentOS 查看内核版本
+uname -r
+
+# 比ping要更强一些，可以看到更多信息
+nslookup <baidu.com>

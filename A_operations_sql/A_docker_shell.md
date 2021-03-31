@@ -6,7 +6,10 @@ docker ps [-a]
 docker run --name some-container-name -p docker_port:host_port -d images-repository-name:tag
 docker image rm images-repository-name:tag
 docker rmi -f images-repository-name:tag
+
+进入docker容器
 docker exec -ti some-container-name/id bash
+
 docker stop some-container-name
 docker container rm some-container-name
 docker container prune
@@ -84,3 +87,9 @@ sudo systemctl disable <docker.service 服务名
 
 重启服务
 sudo systemctl restart <docker.service 服务名>
+
+# 查找Docker Hub 的有哪些镜像
+docker search <nginx>
+
+# 拉取镜像
+docker pull <nginx>
