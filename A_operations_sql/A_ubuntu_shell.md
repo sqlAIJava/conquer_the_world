@@ -180,3 +180,6 @@ https://cloud.tencent.com/developer/article/1471206
 # 2021-3-20
 查看netstat 网表 看某个服务 是否再端口被监听，
 sudo netstat -lntp | grep <dockerd 服务名 模糊>
+
+# ssh 连接服务器
+ssh 用户名@外网IP [ -p 端口 ]
