@@ -186,3 +186,17 @@ ssh 用户名@外网IP [ -p 端口 ]
 
 # 退出服务器
 logout
+
+# scp 上传文件至服务器
+scp <文件> root@ip:<目的地>
+
+# scp 上传文件夹至服务器
+scp [-v debug日志] -r[递归] </文件夹> root@ip:<目的地>
+
+多个文件 用 空格 隔开
+下载至本地 只需要 不填上传时的 <文件就行> 
+scp -r root@ip:/var/temp .
+.表示等地目录
+
+下载多个文件
+scp root@ip:/var/\{index.html,json.js\} .
