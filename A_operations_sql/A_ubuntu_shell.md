@@ -183,3 +183,6 @@ sudo netstat -lntp | grep <dockerd 服务名 模糊>
 
 # ssh 连接服务器
 ssh 用户名@外网IP [ -p 端口 ]
+
+# 退出服务器
+logout
