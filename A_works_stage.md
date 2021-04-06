@@ -32,11 +32,3 @@
     问卷管理
     ```
 
-
-# 2021-3-30
-开发技术：
-Spring Boot ,MVC, DATA JPA, CLOUD, WEB,WebSocket, 
-Redis, 
-Docker,
-
-Ansibole, 
