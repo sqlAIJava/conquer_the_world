@@ -4,3 +4,39 @@ Pattern 定义正则匹配模型
 Matcher 正则匹配匹配器
 
 # 2021-3-22
+
+# 2021-5-8
+多线程
+Thread 
+Runable
+Callable/
+ThreadLock
+
+interrupted 复位 
+wait sleep join ... 阻塞方法
+notify 
+
+总结
+1. start 启动  
+2. interrupt() 终止
+3. interrupted() 重置
+4. InterruptedException 重置 可以结束了 时间给到使用者 告知能停止了
+
+new
+running
+    ready
+     调度 yield 
+    running
+
+    waiting 
+     seelp,wait,join,LockSupport.park
+     notify,notifyall,LockSupport,unpark
+    time_waiting
+     带时间参数的
+    blocked
+     synchronized -> t1/t2 t1获得了锁 -> t2 的状态
+
+terminated
+
+任务链
+ 接收 -> 打印 -> 保存
