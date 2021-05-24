@@ -79,6 +79,11 @@ nohup java -jar xxx.jar &
 nohup java -jar xxx.jar > nohup.log 2>&1 &
 ```
 
+查看后台运行任务
+```
+jobs
+```
+
 curl中文乱码
 ```
  curl -G --data-urlencode "question=asdasd问题sssas" http://10.0.1.11:8080/api/search  
@@ -91,6 +96,9 @@ curl  url -k
 ```
 rm -r向下递归f强行删除
 rmdir
+
+删文件 后面 带上 /
+删多个 用 空格 隔开 
 ```
 
 查找进程
@@ -206,3 +214,14 @@ uname -r
 
 # 比ping要更强一些，可以看到更多信息
 nslookup <baidu.com>
+
+# 查看Linux是什么系统
+```
+cd ~
+cd /proc/version
+```
+
+# contos 安装 程序
+```
+sudo yum install <名字>
+```
