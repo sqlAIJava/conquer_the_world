@@ -225,3 +225,8 @@ cd /proc/version
 ```
 sudo yum install <名字>
 ```
+
+# 查找文件 在什么位置有
+```
+find / -name <名字>
+```
