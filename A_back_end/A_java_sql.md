@@ -40,3 +40,12 @@ terminated
 
 任务链
  接收 -> 打印 -> 保存
+
+
+## 2021-6-8 锁
+对象锁 + 类锁
+```
+锁目标生命周期 的 不一样
+```
+对象【new Object(); this; funcation(){};】
+类【Object.class; Demo.class; static function(){}】
