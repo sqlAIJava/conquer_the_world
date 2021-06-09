@@ -218,7 +218,8 @@ nslookup <baidu.com>
 # 查看Linux是什么系统
 ```
 cd ~
-cd /proc/version
+cd /proc
+cat version
 ```
 
 # contos 安装 程序
