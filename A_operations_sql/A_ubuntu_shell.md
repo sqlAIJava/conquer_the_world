@@ -231,3 +231,21 @@ sudo yum install <名字>
 ```
 find / -name <名字>
 ```
+
+# CentOS 端口 防火墙
+```
+查看开放的端口列表 
+firewall-cmd --zone=public --list-ports
+
+添加开放端口
+firewall-cmd --permanent --zone=public --add-port=8088/tcp
+
+刷新开放端口列表
+firewall-cmd --reload
+
+关闭/启动/重启防火墙
+systemctl stop/start/restart firewall.service
+
+查看防火墙状态
+systemctl status firewalld
+```
