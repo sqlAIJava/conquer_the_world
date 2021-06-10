@@ -251,3 +251,9 @@ systemctl stop/start/restart firewall.service
 查看防火墙状态
 systemctl status firewalld
 ```
+
+# 重命名文件名
+mv a b
+
+# 移动重命名 (将a目录移动到home下为temp目录)
+mv /a /home/temp
