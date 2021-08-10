@@ -40,3 +40,15 @@ mysql -P -h -r -p
 quit
 mysql查找my.cnf文件
 mysql --help|grep my.cnf
+
+# 2021-7-21 mysql index
+mysql 索引原理 + 本质 + 数据结构支撑 
+
+```
+DBMS中一个排序的数据结构
+```
+
+数据模型
+```
+
+```
