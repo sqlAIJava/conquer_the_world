@@ -127,3 +127,16 @@ hsdis
 ```
 java -v temp.class
 ```
+
+# JUC系列
+## Lock 基本使用 + 原理分析
+```
+Java.util.concurrent // 并发工具包
+```
+
+并发安全性
+Lock -> JDK更灵活的方式
+
+
+重入锁
+读写锁
