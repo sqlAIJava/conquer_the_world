@@ -163,3 +163,69 @@ State:
 读多写少的场景， Look的 性能高
 ```
 
+# 学习方法
+## 场景 》 需求 》 解决方案 》 使用 》 原理
+```
+JVM 
+Dubbo
+```
+
+# 初始多线程 发展 + 使用
+```
+真空管 》 晶体管 》 集成电路
+穿孔打卡 》批处理 》 进程
+空闲   》 IO，CPU 》 CPU 时间片
+```
+
+线程
+```
+单核 》 多核 》 并行
+实时性 
+合理的利用多核心CPU资源，提高程序吞吐量
+```
+
+都是实现了 Runable 接口
+
+// 阻塞队列 生产者/消费者模型 责任链
+LinkBlockingQueue<?>
+
+责任链 》 减少一些if elsf 
+```
+异步消息队列 ZK, KFK, 
+```
+
+# 线程的生命周期 （6个）
+6个状态
+创建 》 运行（运行中 》 就绪（调度/yield让出时间片） 》 ） 》 抢占，受阻 》 等待（sleep,wait,join,LockSupport.park() /// notify,notifyall,unpark） 》 超时等待  》 终止
+
+# 线程按照指定循序执行
+
+# InterrupteException 阻塞异常
+
+# jps 
+查看Java进程命令
+
+# jstack PID
+任务内存的堆栈 日志
+
+# 线程的创建（4种）
+Runnable接口
+Thread类 （本质实现了Runnable）
+Callable/Future 带返回值
+ThreadPool 线程池
+
+# start启动？   /   终止？
+hotspot源码start0 navite方法
+回调run();
+
+stop 类似 kill  不安全
+
+Interrupt 中断
+原生OSThread中 status 1 / 0
+
+# 线程的中断 和 复位
+复位， 
+1: Thread.Interrupted(); 复位 》 回到初始化状态
+2: InterruptedException  中断异常  sleep，jion，wait // 阻塞方法 事件触发来结束阻塞事件 取决于 notify 、时间等
+
+目的： 让外界知道我现在还不能中断
