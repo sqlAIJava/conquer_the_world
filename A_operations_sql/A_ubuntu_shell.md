@@ -72,14 +72,14 @@ tmux
     dpkg -l |grep mysql|awk '{print $2}' |sudo xargs dpkg -P;清理残留数据
     ```
 
-后台运行运行
-````
+# 后台运行运行
+```
 nohup Command命令 [ Arg ... ][ & ]
 nohup java -jar xxx.jar &
 nohup java -jar xxx.jar > nohup.log 2>&1 &
 ```
 
-查看后台运行任务
+# 查看后台运行任务
 ```
 jobs
 ```
@@ -257,3 +257,16 @@ mv a b
 
 # 移动重命名 (将a目录移动到home下为temp目录)
 mv /a /home/temp
+
+# 服务管理命令
+sudo systemctl status redis-server <redis>
+```
+systemctl 方式管理 redis 服务
+隶属于 systemd
+```
+
+sudo service redis-server status
+```
+service 方式管理 redis 服务
+```
+

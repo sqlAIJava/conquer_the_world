@@ -288,3 +288,16 @@ GC标志      |                                    | 11
 自旋会占用CPU资源 。  时间 平衡 规定 自旋次数  》》》 锁膨胀 -》 重量级锁
 preBlockSpin ～ 10
 自适应自旋
+
+线程自己的线程栈
+线程栈空间 Execution Stack
+     > Lock recode 线程栈空间的锁空间
+          > displaced hdr
+               ```
+               MarkWord
+
+               ```
+          > owner 
+               ```
+               指向  stack pointer 的对象
+               ‵‵‵
