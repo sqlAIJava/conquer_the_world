@@ -87,7 +87,7 @@ hsdis
      线程、进程
      指令优化 -> 重排序
 
- jmm层面（内存模型）
+ jmm层面（内存模型） = Java内存模型(Java memory model)
      Java程序 -> JMM 保证可见性 -> 不同操作系统平台
      [X86层面]volatile -> Lock -> 汇编指令 -> 内存屏障
      可见性根本问题 
@@ -393,4 +393,19 @@ I  。。。？！
                                                                                                          loadMemoryBarrier();
                                                                                                          读屏障store、写屏障load、全屏障full barrier
                                                                                                     ```
+```
+
+# 可见性 根本 问题
+高速缓存 + 重排序
+
+# JMM 解决
+有序性 + 可见性
+
+# JVM 层面
+硬件/系统 > 内存屏障 > JVM 层面 > Java 程序
+```
+JMM 的 内存模型 （语言级别的抽象内存模型） 》 有 volatile、sync、fianl、happens-before 来解决
+     主内存 
+          》 工作内存
+                    》 线程
 ```
