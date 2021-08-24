@@ -409,3 +409,69 @@ JMM 的 内存模型 （语言级别的抽象内存模型） 》 有 volatile、
           》 工作内存
                     》 线程
 ```
+
+# AQS 底层原理解析  +   J.U.C Lock的基本使用，原理分析
+java.util.concurrent 并发工具包 juc
+     > 原子操作
+     > 锁的操作
+     > 阻塞队列
+
+# ReentrantLock 重入锁
+防止死锁
+```
+     内嵌 锁调用
+```
+snyc也支持
+互斥特性
+
+可以通过API控制，合理控制力度
+
+# ReentrantReadWriteLock 重入读写锁
+针对读写不同锁互斥
+读多写少
+```
+读时
+     > 加读锁 > 释放
+写时
+     > 加写锁 > 释放
+```
+
+# 多线程 竞争 重入锁时， 其他 进入 阻塞 状态 怎么实现的 ？ >>> AQS
+AQS 同步工具/组件 》 实现线程的阻塞
+功能：
+1：独占 》互斥锁 （只能一个线程获得锁）
+2：共享 》读写锁 （可以有多个线程获得锁）
+
+# AQS 怎么做的
+双向链表
+
+# unsafe CAS
+obj, 占用锁对象
+offsef, 内存地址偏移量
+     ```
+     一个Java对象 看成 一段内存
+     每一个字段都会按照一定的顺序放到内存里面
+          通过一个方法objectFieldOffset 获得 这个字段 相对 对象的起始内存地址的一个 偏移量
+               实现原子性
+     ```
+expect, 比较的预期值
+update, 替换的修改值
+
+# 加锁 、 获得同步锁
+对一个共享资源的状态 做一些变化
+
+# AQS 同步锁
+Status 0 共享数据，锁标记
+exclusiveOwnerThread ThreadA
+
+^
+ CAS 比较替换 同步锁 
+
+
+# AQS 双向链表
+Node head;头 null
+     > prev 前一个Node
+     > next 下一个Node
+     > waitStatus 0
+     > thread null
+Node tail;尾 null
