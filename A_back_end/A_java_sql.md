@@ -571,3 +571,86 @@ tryAcquire() {
      在 c  == 0 时；多了一个 if 条件 ！hasQueuedPredecessors() 如果当前队列中已有其他阻塞的话，AQS有线程排队的话  就不会再CAS
 }
 ```
+
+# JUC 并发工具的使用以及原理 
+线程场景
+
+# Condition
+```
+wait notify 通信
+condition.await/signal/signalall 多线程中的线程通信
+
+应用
+XX队列】
+生产者消费者模型
+```
+
+# Condition 实现
+单向链表
+firstWaiter
+lastWaiter
+
+类似
+     AQS队列 = 同步队列
+     Condition队列 = 等待队列
+
+fullyRelease() 支持重入锁
+
+WaitStaus = CONDITION 存在等待队列 -2
+
+ConditionAwait > lock() > condition > await() > ConditionQueue 
+ConditionSignal > lock() > condition > signal                   > AQSQueue 
+
+
+Thread.interrupt(); //中断
+     ```
+     底层会 唤醒 睡眠的 和 挂起的 线程
+     ```
+siganl(); // 唤醒 等待队列的线程
+
+# CountDownLath
+计数器场景
+等到子线程执行完了，再执行；awit() 结合 countDown() 以及 初始化传入int
+
+缓存 预热 
+前置条件 完成时 
+
+共享锁Shared
+
+state = 3 
+     > 当 state = 0 
+               > 唤醒 全部 线程 以 传播pro...的方式
+
+# Semaphore
+限流（AQS中）
+令牌
+停车位 5个 车位 最大 车位数
+存在 公平 和 非公平
+
+初始化 传入 int；
+     》 acquire(); 满了就阻塞
+     》 release(); 释放
+
+共享锁Shared
+
+# CyclicBarrier
+栅栏
+循环屏障
+可以使得一组线程达到一个同步点 之前 阻塞
+之前时之前多久？
+     ```
+
+     ```
+
+例子
+旅游 ， 导游 10个人到了 再发票
+导入数据，不同数据导入完了，再分析
+
+初始化传入 int 与 线程类
+     > cyclicBarrier.await();// 阻塞  每个线程多执行了await 就是 -- 到 0;
+
+重入锁
+Condition
+
+Barrier
+     > newGernation
