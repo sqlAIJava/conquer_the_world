@@ -475,3 +475,93 @@ Node head;头 null
      > waitStatus 0
      > thread null
 Node tail;尾 null
+
+# AQS 线程竞争 步骤
+Thread A、B、C
+> 1: 第一个线程进入
+     ```
+     state = 1
+     exclusiveOwnerThread = ThreadA
+     head = null
+     tail = null
+     ```
+          > 2: 第二个线程进入
+          ```
+          CAS初始化 head
+          tail = head
+          ```
+               > 3: 其他线程进入争抢
+               ```
+               自旋没有获得锁的线程添加到双向链表中
+               head = Node(thead = null, waiteStatus = 0).next -> [<-.prev]Node(thread = ThreadB, waitStatus = 0).next -> [<-.prev]Node(thread = ThreadC, waitStatus = 0) = tail
+               ```
+                    > 4:  挂起队列中的其他线程节点[再争抢？阻塞？] 
+                    ```
+                    前两个 SIGNAL -1 prev前置节点
+                    后两个 线程 挂起 park
+                    ```
+
+A lock.unlock(); 解锁
+> 唤醒
+     ```
+     release(int arg)
+          unparkSuccessor(Node node[head])  head 表示拥有锁的节点
+               尾部节点 开始 for 扫描
+               唤醒 
+                    干到头结点， 把下个节点变成头结点， aqs的中占有锁的改成 theadB
+     ```
+
+# 自旋 中断线程
+thread.interrupt 中断线程 设置中断标志（需要响应）
+thread.interrupted 获得中断状态，复位
+
+需要响应
+run() {
+     if (Thread.currentThread.isInterrupted()) {
+          // 业务 自动中断， bread等
+     }
+}
+
+AQS 中 自旋 死循环
+只是设置中断状态， 后 可能 被park挂起阻塞， 并没有响应中断过程
+
+# 尾部节点 开始 for 扫描
+前提 节点状态 status 》 1 如 CANCELL
+构建链路的时候3个步骤
+1：设置 prev
+2：设置 tail 原子 操作
+3：设置 next 
+     ```
+     当别的线程释放锁时, 可能导致 next 设置不成功, 
+     ```
+场景
+     当前线程 去获得锁 出现 异常 或者被标记为CANCELL 状态
+
+# 公平锁 非公平锁 区别
+nofair
+```
+lock() {
+     多个CAS 状态State
+     插队线程 
+     或者 acquire
+}
+
+tryAcquire(){
+     nofairTryAcquire();
+     ```
+     {
+
+     }
+     ```
+}
+```
+
+fair
+```
+lock() {
+     直接 acquire
+}
+tryAcquire() {
+     多了一个 if 条件 ！hasQueuedPredecessors() 如果当前队列中已有其他阻塞的话，AQS有线程排队的话  就不会再CAS
+}
+```
