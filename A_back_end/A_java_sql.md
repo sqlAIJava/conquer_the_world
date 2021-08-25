@@ -478,27 +478,32 @@ Node tail;尾 null
 
 # AQS 线程竞争 步骤
 Thread A、B、C
-> 1: 第一个线程进入
+> 1: 第一个线程进入 nonfairTryAcquire(int);
      ```
      state = 1
      exclusiveOwnerThread = ThreadA
      head = null
      tail = null
      ```
-          > 2: 第二个线程进入
+          > 2: 第二个线程进入 enq(Node);在addWaiter()中；在acquire()中
           ```
           CAS初始化 head
           tail = head
           ```
-               > 3: 其他线程进入争抢
+               > 3: 其他线程进入争抢 addWaiter(Node);
                ```
                自旋没有获得锁的线程添加到双向链表中
                head = Node(thead = null, waiteStatus = 0).next -> [<-.prev]Node(thread = ThreadB, waitStatus = 0).next -> [<-.prev]Node(thread = ThreadC, waitStatus = 0) = tail
                ```
-                    > 4:  挂起队列中的其他线程节点[再争抢？阻塞？] 
+                    > 4:  挂起队列中的其他线程节点[再争抢？阻塞？]   acquireQueue(Node, int);
                     ```
-                    前两个 SIGNAL -1 prev前置节点
-                    后两个 线程 挂起 park
+                    前两个 SIGNAL -1 prev前置节点 shoud...();
+                    后两个 线程 挂起 park         parkAndCheckInterrupt();
+                                                  ```
+                                                  这之前阻塞了，等到别的线程唤醒它的时候，再继续执行。。。
+                                                  为什么要返回Thread.interrupted();
+                                                  该线程在抢占锁的时候，是没有办法响应别的线程给我发起的中断请求；下次被唤醒的时候再去响应中断请求selfInterrupt()
+                                                  ```
                     ```
 
 A lock.unlock(); 解锁
@@ -513,21 +518,22 @@ A lock.unlock(); 解锁
 
 # 自旋 中断线程
 thread.interrupt 中断线程 设置中断标志（需要响应）
-thread.interrupted 获得中断状态，复位
+thread.interrupted 获得当前中断状态，复位
 
 需要响应
 run() {
      if (Thread.currentThread.isInterrupted()) {
           // 业务 自动中断， bread等
      }
-}
+}    
 
 AQS 中 自旋 死循环
 只是设置中断状态， 后 可能 被park挂起阻塞， 并没有响应中断过程
 
-# 尾部节点 开始 for 扫描
+# 唤醒next时，当next == null；尾部节点 开始 for 扫描
+循环的方式把取消的线程移除；
 前提 节点状态 status 》 1 如 CANCELL
-构建链路的时候3个步骤
+构建链路的时候3个步骤enq(node);
 1：设置 prev
 2：设置 tail 原子 操作
 3：设置 next 
@@ -535,7 +541,7 @@ AQS 中 自旋 死循环
      当别的线程释放锁时, 可能导致 next 设置不成功, 
      ```
 场景
-     当前线程 去获得锁 出现 异常 或者被标记为CANCELL 状态
+     当前线程 去获得锁 出现 异常 或者被标记为CANCELL（处于等待队列的线程超时，中断，异常） 状态
 
 # 公平锁 非公平锁 区别
 nofair
@@ -562,6 +568,6 @@ lock() {
      直接 acquire
 }
 tryAcquire() {
-     多了一个 if 条件 ！hasQueuedPredecessors() 如果当前队列中已有其他阻塞的话，AQS有线程排队的话  就不会再CAS
+     在 c  == 0 时；多了一个 if 条件 ！hasQueuedPredecessors() 如果当前队列中已有其他阻塞的话，AQS有线程排队的话  就不会再CAS
 }
 ```
