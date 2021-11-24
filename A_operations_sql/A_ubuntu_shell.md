@@ -270,3 +270,8 @@ sudo service redis-server status
 service 方式管理 redis 服务
 ```
 
+# 查看java安装位置 | java有几个版本 | 更换java版本
+update-alternatives --config java
+
+# root身份打开文件夹
+sudo nautilus
