@@ -275,3 +275,15 @@ update-alternatives --config java
 
 # root身份打开文件夹
 sudo nautilus
+
+# 文件权限
+drwxrwxrwx   -rwxrwxrwx   drrwxr-xr-x
+第一个rwx 所有者用户
+第二个rwx 同组用户
+第三个rwx 其他用户组
+r 读
+w 写
+x 执行
+
+# 设置文件权限
+sudo chmod 777 <文件名>  开放所有读写执行权限
