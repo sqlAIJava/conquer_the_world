@@ -293,3 +293,7 @@ sudo gedit <文件名>
 
 # 查看服务目录
 whereis <nginx>
+
+# ssh退出服务器
+exit 回车
+logout 回车
