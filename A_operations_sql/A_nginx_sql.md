@@ -4,3 +4,6 @@
 
 # 重启服务
 ./nginx -s reload
+
+# 指定配置文件
+./nginx -c <nginx.conf>

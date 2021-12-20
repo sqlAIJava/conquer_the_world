@@ -167,8 +167,8 @@ scp
 sftp连接服务器
 sftp -P 端口 用户@ip
 
-查看进程起来没
-ps aux | grep gun
+查看进程起来没 & 关闭软件
+ps aux | grep <gun>
 查看网咯端口又没被占用
 netstat -anp | grep 8000
 
@@ -290,3 +290,6 @@ sudo chmod 777 <文件名>  开放所有读写执行权限
 
 # 打开文本编辑器
 sudo gedit <文件名>
+
+# 查看服务目录
+whereis <nginx>
