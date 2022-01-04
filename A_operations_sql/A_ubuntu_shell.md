@@ -297,3 +297,22 @@ whereis <nginx>
 # ssh退出服务器
 exit 回车
 logout 回车
+
+# ubuntu登录windows服务器
+rdesktop [options] server[:port]    
+rdesktop -f -a 16 -u Administrator 10.1.192.237 -r disk:abc=/media/sql/DATA/A_work_sql/2021_sql/wanders_zf/work_space/wd_idea/svn/A_wegov_2_to_3/source/wegovb/target
+```
+命令参数常用的有：
+-u用户名
+-p密码
+-n客户端主机名（显示windows任务管理器中的连接客户端名）
+-g桌面大小（ 宽＊ 高）[也可以用 x(小写的X)]
+-f全屏模式,从全屏模式切换出来按Ctrl+Alt+Enter
+-a连接颜色深度（最高到16位），一般选16才会显示真彩色（window7支持32位）
+-0数字0表示连接上windows控制台，等效mstsc/console命令
+
+后接参数:
+rdesktop <ip> -r clipboard:PRIMARYCLIPBOARD -r disk:abc=/home/xxx/test/
+-r clipboard:PRIMARYCLIPBOARD是允许共享剪切板.
+-r disk:abc=/home/xxx/test/这个是将'/home/xxx/test'这个文件夹映射到'abc'这个目录下.连接上之后,可以通过将文件复制粘贴到'abc'文件夹内,来实现文件的转移
+```
