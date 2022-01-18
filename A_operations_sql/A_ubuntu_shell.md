@@ -234,7 +234,7 @@ sudo yum install <名字>
 find / -name <名字>
 ```
 
-# CentOS 端口 防火墙
+# CentOS Linux 端口 防火墙
 ```
 查看开放的端口列表 
 firewall-cmd --zone=public --list-ports
