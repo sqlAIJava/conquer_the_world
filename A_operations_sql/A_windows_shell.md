@@ -7,7 +7,7 @@ ping
 telnet host ip
 
 ## 2020-11-26
-netstat -ano|findstr "port"
+netstat -ano|findstr "port/pid"
 tasklist|findstr "LISTENING"
 taskkill /T /F /PID LISTENING       /F强制 /T子进程
 
