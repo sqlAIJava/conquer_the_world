@@ -294,6 +294,9 @@ sudo gedit <文件名>
 # 查看服务目录
 whereis <nginx>
 
+# 模糊查找服务
+whereis | grep <模糊名>
+
 # ssh退出服务器
 exit 回车
 logout 回车
@@ -316,3 +319,7 @@ rdesktop <ip> -r clipboard:PRIMARYCLIPBOARD -r disk:abc=/home/xxx/test/
 -r clipboard:PRIMARYCLIPBOARD是允许共享剪切板.
 -r disk:abc=/home/xxx/test/这个是将'/home/xxx/test'这个文件夹映射到'abc'这个目录下.连接上之后,可以通过将文件复制粘贴到'abc'文件夹内,来实现文件的转移
 ```
+
+# 查看体系版本 如 x86 x64
+file /bin/bash
+arch
