@@ -323,3 +323,15 @@ rdesktop <ip> -r clipboard:PRIMARYCLIPBOARD -r disk:abc=/home/xxx/test/
 # 查看体系版本 如 x86 x64
 file /bin/bash
 arch
+
+# 将普通用户加入权限组
+sudo gpasswd -a <sql> <docker> 
+```
+sql用户 加入到 docker组
+```
+
+# 刷新权限组
+newgrp <docker>
+```
+刷新docker组
+```
