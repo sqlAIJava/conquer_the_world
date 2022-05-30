@@ -72,6 +72,13 @@ tmux
     dpkg -l |grep mysql|awk '{print $2}' |sudo xargs dpkg -P;清理残留数据
     ```
 
+# mysql一般安装位置
+/etc/mysql
+
+# mysql 取消127.0.0.1绑定地址
+注释掉/etc/mysql/mysql.conf.d/mysqld.cnf
+中的bind-addres = 127.0.0.1
+
 # 后台运行运行
 ```
 nohup Command命令 [ Arg ... ][ & ]
