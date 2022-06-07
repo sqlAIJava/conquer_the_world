@@ -342,3 +342,8 @@ newgrp <docker>
 ```
 刷新docker组
 ```
+
+# Terminal命令行清屏，置顶
+```
+claer 回车
+```

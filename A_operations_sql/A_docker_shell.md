@@ -93,3 +93,80 @@ docker search <nginx>
 
 # 拉取镜像
 docker pull <nginx>
+
+# 2022-6-7 Docker 开篇记录 1
+定义
+```
+传统：
+    > 基础设施 + 不同系统 + 软件应用
+
+虚拟机：
+    > 基础设施 + 不同系统 + 多个VM太重 （不同系统 + 软件应用）
+
+容器：
+    > 基础设施 + 不同系统 + Docker Engine (Image + Containers)
+```
+
+应用 
+    > 代码 + 配置 + 环境 
+        > image 
+            > container
+
+虚拟化 ~ 容器 区别
+```
+VM 中 要核定的OS 宿主主机的 资源
+Docker 直接要 宿主机 资源 如 100M 0.5核
+```
+
+更好的安装虚拟机
+```
+vagrant(配置镜像) + VetrouBox
+
+Vagrantfile精髓文件
+```
+
+docker 流程 
+```
+docker client 
+    > docker server
+        > docer hub
+```
+
+docker 删除全部镜像
+```
+docker rm -f ${docker ps -aq}
+```
+
+与Kubernetes 结合使用
+```
+            一台主机 多容器的 编排   多机的跨机容器管理    
+Kubernetes ---> Docker compose ---> Docker Swarn（过时） --->  
+```
+
+Docker 到底是什么 ？ 为什么一个images 弄出那么多 containe ? 怎么设计Docker 
+```
+中间件 到 部署
+docker 将 中间件从下载到部署完成 全做了步骤
+
+docker 每一个> 都是一个 layer
+    > container layer层级 
+        ···上是自定义层 下是镜像基础层不可更改···
+        > Custom自定义的 image = [如：mysql 代码 文件]
+            > Centos..... Image 基础系统镜像
+                > Linux Kernel内核 
+```
+
+## 查看docker 的网络
+docker network ls
+```
+打印出
+bridge 网桥
+host   主机
+```
+
+## 查看docker 具体网络
+```
+docker inspect bridge
+```
+
+## 问题：持久化、网络化、物理存储化？
