@@ -361,6 +361,54 @@ ip a 查看宿主机 网段
 
 docker exec -it 容器名 ip a 查看容器的所有网段
 
+## 宿主机 ping container ping container ok
+有docker0 同一个网段
+
+docker network ls
+bridge 桥接 模式
+
+不够用时 可以用
+docker network create mynet指定网络 网段自动上1从17
+docker run --network 指定网络
+
+docker 新网络 之间网段 ping 不通 172.17..... not ping 172.19.........
+
+## 解决不同网段 ping 通
+容器 添加到 网络 进去
+docker network connect 添加入的网络 被添加的容器
+
+## 容器名 ping 容器名 (单机集群 案例)
+link 共同的交接
+
+docker 默认 网络 无法 两个容器 ping 名字
+* 自定义的 网络 确实可以的
+```
+桥接的方式
+docker 会自动 添加一条DNS记录
+```
+
+默认的 ping 加run 参数
+docker run --link 要ping的容器名
+
+link 不好用 不好用
+
+一般用 新网络
+
+单机集群mysql
+docker run -d --name m1 --network mysql-net mysql_image
+docker run -d --name m2 --network mysql-net mysql_image
+docker run -d --name m3 --network mysql-net mysql_image
+
+## docker 网络模式
+bridge 
+host
+null
+自定义
+
+## 多机 相通
+Vxlan
+
+overlay docker 多机网络通信
+
 # 容器 destroy 持久化 数据 存储
 TODO Study
-
