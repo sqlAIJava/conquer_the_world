@@ -347,3 +347,6 @@ newgrp <docker>
 ```
 claer 回车
 ```
+
+# 查询历史指令
+history | grep <seach name>

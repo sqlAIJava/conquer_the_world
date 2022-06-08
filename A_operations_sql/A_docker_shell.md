@@ -38,7 +38,7 @@ docker rm <contaninerID>
 查看容器日志
 docker logs <containerName>
 进入docker 容器服务 命令
-docker exec -it <containerName> bash
+docker exec -it交互式运行 <containerName> bash
 退出docker 容器服务 命令
 exit;
 
@@ -170,3 +170,197 @@ docker inspect bridge
 ```
 
 ## 问题：持久化、网络化、物理存储化？
+# 2022-6-8 Docker 灵魂探讨
+## image 的 得来
+由Dockerfile生成
+```
+cd到目录，构建image
+docker build -t <镜像名字> .
+```
+
+## Dockerfile 语法
+```
+一层一层Layer的过程
+entrypoint执行 = CMD 会覆盖docker-entrypoint.sh中的内容
+COPY 宿主机文件 image路径 = ADD 会自动解压压缩包
+RUN 镜像里执行一些命令
+ENV 环境变量
+VOLUME  image主机安装地址 
+EXPOSE image里的端口 宿主机端口
+MAINTAINER 作者申明
+LABEL 标签识别 作者信息
+```
+
+## SpringBoot jar 做成 image
+```Dockerfile
+FROM openjdk:8
+
+MAINTAINER sql
+
+LABEL name="dockerfile-demo" version="1.0" author="sql"
+
+COPY 宿主机文件相对dockerfile位置   image里面（可以加后缀.jar）
+
+CMD ["java", "-jar", "test.jar"]
+```
+
+## Servlet / SpringMVC war 做成 image 
+deploy ---> tomcat
+```Dockerfile
+项目COPY TO Tomcat Image webapps/
+```
+
+## image 共享
+```
+docker 位置
+    > cd /var/lib
+        > cd docker
+            > cd image/
+                > cd overlay2/
+                    > ls
+
+docker 推送至 Hub中
+    > docker login
+
+    > docker tag别名副本 test-docker-image sqlong/test-docker-image:v1.0
+
+    > docker push sqlong/test-docker-image:v1.0
+```
+
+## docker 设置阿里云镜像仓库站点加速器
+```
+/etc/docker/daemon.json
+    > {...}
+```
+
+## 推送至 阿里云 docker仓库
+```
+sudo docker login --username=阿里云账号 registry.cn-hangzhou.aliyuns.com
+```
+
+## 自己的docker 仓库
+harbor
+```
+修改配置文件，harbor.cfg
+
+--- docker-compose.yml
+
+sh install.sh
+```
+
+## image TO container
+```
+Container 基于 image layer
+```
+
+## container 逆向 image
+```
+docker commit 已有的容器名 生成的容器名
+```
+
+## container 核心 cpu 内存 资源
+```log
+docker log contain_id
+
+docker top contain_id_name
+
+docker status contain_id_name
+```
+
+指定 --memory 100M --cpu-shares 10相对分片
+
+## Linux 机器 监控 工具 weaveworks/scope 资源
+
+
+## Linux 隔离
+namespace 隔离 pid net mnt持久化过载
+
+CGroups 隔离 资源 内存 cpu
+
+Union file systems 区分 image/container 
+
+# 应用进行通信[分布式/微服务] ip iptables 网络 
+## 计算机网络模型
+7 / 4层 
+
+两台计算器通信
+```
+网卡 信息
+ifconfig / ip a / ipconfig / ip link show / ls /sys/class/net 看网络 网卡 通信网段
+    lo 本地
+    eth0 互联网
+    eth1 宿主机 / 物理主机
+    docker0 docker通信
+
+与 基础层 的 数据链路层 交互
+
+唯一的MAC地址
+
+网卡 以 文件形式存在  计算机中
+``` 
+
+## 增加/删除 IP 地址
+```
+ip addr add ip/24位子网掩码 dev设备 eth0网卡
+
+ip addr delete ip/24位子网掩码 dev设备 eth0网卡
+
+ifup/ifdown开启/关闭 eth0网卡
+```
+
+## 网卡属于Linux系统的，怎么做 namespace 隔离 网卡
+```
+ip netns add nsl 创建一个network namespace
+ip netns list 查看
+
+ip netns exec nsl新的namespace ip a 
+
+ip netns exec nsl新的namespacename <net相关指令>
+            > ip a
+            > ifup lo
+            > ...
+
+lo 回环地址网卡
+```
+
+## veth pair : Virtual Ethernet Pair 成对--->两个网卡
+创建出来时默认能够连接的，分别给 两个新的 namespace 网卡
+
+创建 可连接的 net
+ip link add veth-ns1网卡名字 type veth peer name veth-ns2网卡名字
+
+分别分发给两个namespace，
+ip link set veth-ns1网卡名字 netns ns1新的namespace
+
+## 给 namespace 添加 ip 地址
+ip netns exec ns1 ip addr add ip/24 dev veth-ns1
+
+## 启动 namespace 的 ip
+ip netns exec ns1 ip link set veth-ns1 up
+
+ip netns exec ns1 ip a 查看 
+
+## 给 第二个 namespace 添加 ip
+ip netns exec之下 ns2 ip addr add ip/24 dev veth-ns2
+
+## docker 网络
+namespace + 网卡实现
+
+网口 21 ~ 23 刚觉不像一对 ，没有用veth pair吗？
+
+有用 ， docker0做桥接
+
+新的namespace的pair 与 docker0 的pair通过
+
+## 验证 docker0桥接
+yum install bridge-utils
+
+brctl show
+
+ip a 查看宿主机 网段
+
+docker exec -it 容器名 ip a 查看容器的所有网段
+
+# 容器 destroy 持久化 数据 存储
+TODO Study
+
