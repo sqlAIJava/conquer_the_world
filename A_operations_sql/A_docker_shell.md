@@ -369,7 +369,7 @@ bridge 桥接 模式
 
 不够用时 可以用
 docker network create mynet指定网络 网段自动上1从17
-docker run --network 指定网络
+docker run --network指定网络  --ip指定ip
 
 docker 新网络 之间网段 ping 不通 172.17..... not ping 172.19.........
 
@@ -411,4 +411,67 @@ Vxlan
 overlay docker 多机网络通信
 
 # 容器 destroy 持久化 数据 存储
-TODO Study
+## Docker 中 container 为 中心
+```
+容器里的安装 VOLUME 安装位置
+
+创建挂载别名位置
+docker volume create --name v1
+
+dcoker volume ls
+
+dcoker volume inspect查看 VOLUME_ID
+```
+
+## 误删 可恢复 根据 VOLUME_ID
+mysql_volume container 恢复
+* docker run -v mysql_volume已经存在的:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
+
+## docker run 自定义挂载
+docker run -v 宿主机位置/自定义的VOLUME_ID:容器位置 
+* 数据实时同步 默认也是 宿主机=容器内
+
+## Bind Mounting 
+任意宿主机位置 挂载 容器内的任意位置
+- v 任意：容器任意
+实时同步 === 开发者改宿主机的东西 自动 挂载
+
+## 部署 --- 集群 mysql
+数据同步性
+Replication 
+```
+弱一致性
+速度快，无需所有节点都成功
+异步复制，无法保证每个节点都一致
+
+低价值数据 评论。。。。。。
+```
+
+PXC
+Percona XtraDB Cluster
+```
+强一致性
+
+订单 抢红包。。。。。。
+```
+
+docker tag 有的镜像 要打成的进项
+docker images 可查看
+
+创建网络 》 创建别名挂载 》 创建容器 - 关联PXC集群关系 -e CLUSTER_JOIN=已经有的容器
+
+## HaProxy container 请求分化
+docker run 端口被占用
+先把contains rm -f 掉 ， 因为还在Created
+
+## SpingBoot docker 集群
+改DB_ip DNS 》docker network  > dockerfile > images > docker VOLUME > run container (mysql网段和boot的network 一样 也可以不一样) > nginx 配置文件 》 run nginx 
+
+## network volume container image
+写好多docker命令 比较混乱 
+
+# docker-compose 单机多容器 管理
+
+# docker-swarn mesos kubernetes 多机多容器 管理 编排
+
+## service mesh： k8s
