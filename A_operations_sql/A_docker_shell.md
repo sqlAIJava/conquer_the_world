@@ -474,9 +474,44 @@ docker run 端口被占用
 docker-composr up -d -f指定的容器 
 docker-composr down关闭
 
-# docker-swarn mesos kubernetes 多机多容器 管理 编排
+# docker-swarm mesos kubernetes 多机多容器 管理 编排
 cpu 1  mem 1024M = docker-swarn * 2 = k8s
 
+manager
+策略分发 + 健康检查 + 服务发现 + 请求调度 + 数据分布式存储
+cli > manager > worker
+
+* docker swarm ...
+
+## 多机通信 VXlAN
+docker server create ... --network 类型 overlay， swarm join 之后
+docker network create -d overlay my-overlay-net
+
+* 节点的 端口 都打开了
+
+## Ingress network 端口的软负载 转发
+类似iptabs 请求分发
+（tomcat + IPVS） + （tomcat + IPVS） + （tomcat + IPVS） 
+
+集群里的端口 造成浪费
+
+tomcat 集群多台 统一的请求分发 案例
+docker service --name whoami -p 8000:8000 --network my-overlay-net -d jwilder/whoami
+whoami 集群单个是谁
+curl ip:port
+
+## docker swarm 负载均衡
+对应节点
+LoadBalance
+
+自动存在 DNS 的解析
+* 当集群边多的时候 统一入口
+curl 到 主IP:port 
+* Internal 做了负载均衡 LoadBalance ;;; 前提是 manager 中 docker server scale ....=3台
+
+## docker stack 类似多机多容器 管理 ~~~ docker compose
+
 docker service scale 编排
+docker service ps查看详情 容器名
 
 ## service mesh： k8s
