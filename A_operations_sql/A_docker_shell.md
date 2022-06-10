@@ -470,8 +470,13 @@ docker run 端口被占用
 ## network volume container image
 写好多docker命令 比较混乱 
 
-# docker-compose 单机多容器 管理
+# docker-compose .yml 单机多容器 管理
+docker-composr up -d -f指定的容器 
+docker-composr down关闭
 
 # docker-swarn mesos kubernetes 多机多容器 管理 编排
+cpu 1  mem 1024M = docker-swarn * 2 = k8s
+
+docker service scale 编排
 
 ## service mesh： k8s
