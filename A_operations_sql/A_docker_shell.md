@@ -606,15 +606,15 @@ docker run --name teamcity-server-instance  \
 teamcity-server
 
 
-docker run -e SERVER_URL="http://192.168.3.211:8111/"  \
+docker run -d --name teamcity-agent -e SERVER_URL="http://10.1.192.238/:8111/"  \
 -u 0 \
--v /data/teamcity_agent/conf:/data/teamcity_agent/conf \
--v /var/run/docker.sock:/var/run/docker.sock  \
--v /opt/buildagent/work:/opt/buildagent/work \
--v /opt/buildagent/temp:/opt/buildagent/temp \
--v /opt/buildagent/tools:/opt/buildagent/tools \
--v /opt/buildagent/plugins:/opt/buildagent/plugins \
--v /opt/buildagent/system:/opt/buildagent/system \
+-v /docker/teamcity_agent/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /docker/teamcity_agent/var/run/docker.sock:/var/run/docker.sock  \
+-v /docker/teamcity_agent/opt/buildagent/work:/opt/buildagent/work \
+-v /docker/teamcity_agent/opt/buildagent/temp:/opt/buildagent/temp \
+-v /docker/teamcity_agent/opt/buildagent/tools:/opt/buildagent/tools \
+-v /docker/teamcity_agent/opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /docker/teamcity_agent/opt/buildagent/system:/opt/buildagent/system \
 teamcity-agent
 
 docker run -e SERVER_URL="http://192.168.3.211:8111/"  -u 0 -v /data/teamcity_agent/conf:/data/teamcity_agent/conf -v /var/run/docker.sock:/var/run/docker.sock  -v /opt/buildagent/work:/opt/buildagent/work -v /opt/buildagent/temp:/opt/buildagent/temp -v /opt/buildagent/tools:/opt/buildagent/tools -v /opt/buildagent/plugins:/opt/buildagent/plugins -v /opt/buildagent/system:/opt/buildagent/system teamcity-agent
