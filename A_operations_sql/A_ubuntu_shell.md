@@ -230,6 +230,9 @@ cd ~
 cd /proc
 cat version
 ```
+```
+cat /etc/*-release
+```
 
 # contos 安装 程序
 ```

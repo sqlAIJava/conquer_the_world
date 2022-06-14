@@ -514,4 +514,108 @@ curl 到 主IP:port
 docker service scale 编排
 docker service ps查看详情 容器名
 
-## service mesh： k8s
+# K8s/Kubernetes 容器 管理 和 编排
+服务发现 容器编排 Google > Borg 15years ---> K8s
+gartner forrester 分析报告
+云原生时代的基础设施
+* Cloud Native 云原生
+CNCF 15年 Linux基金会 
+```
+    服务器硬件
+        > 很多个VM虚拟机
+
+        > docker container
+
+    公有云、私有云、混合云
+        > 软件迁移 复杂
+
+        > K8s 管理 container容器
+```
+
+* K8s 迁移 容器 到云上
+```
+    gRPC 服务层面远程调度
+
+    Linkerd 服务网格 代理转发流量
+```
+
+开发很简单 > 技术增加 > deplay问题越多
+
+* 把容器应用，运行在 任何时机 任何地方
+
+* 13 年 马丁大叔 > 微服务
+
+## K8s 结构
+```
+    K8s
+        > Deployments 控制 ReplicaSer or Pod
+            > ReplicaSer 扩缩容
+                > Pod 豌豆 最小单位控制
+                    ```
+                    Service 管理相同的 Label 共同的属性 key-value 的 Pod ;
+                        ```
+                        Selector 某个组件选择别的组件
+                        ```
+                        Label 分门别类 key=value app=login
+                    ```
+                    > 大量 Container
+```
+```
+    work节点
+        Node 物理机器 多个 组成 K8s集群
+        ```
+            Master Node \ Worker Node
+        ```
+            > 多个Pod
+```
+
+## K8s 环境搭建的方式
+* The hard way
+```
+    比较难 Github  kubernetes-the-hard-way
+```
+
+* The easiest way
+```
+    Play with Kubernetes 在线
+```
+
+* 普遍搭建方式
+```
+    kops github 在云服务中 用 搭建
+    coreos      在企业级中 搭建
+
+    minikube    本地单机的k8s         封装步骤
+    kubeadm/二进制 本地及集群的k8s     封装步骤
+```
+
+* 2G RAM AND 2 CPUs or more
+
+## 集群架构
+TODO 图片 找找再放 
+
+# Service Mesh
+
+
+## 安装teamcity笔记
+```shell
+docker run --name teamcity-server-instance  \
+-v /docker/data/teamcity_server/datadir:/data/teamcity_server/datadir \
+-v /docker/opt/teamcity/logs:/opt/teamcity/logs  \
+-p 8111:8111 \
+teamcity-server
+
+
+docker run -e SERVER_URL="http://192.168.3.211:8111/"  \
+-u 0 \
+-v /data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+-v /opt/buildagent/work:/opt/buildagent/work \
+-v /opt/buildagent/temp:/opt/buildagent/temp \
+-v /opt/buildagent/tools:/opt/buildagent/tools \
+-v /opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /opt/buildagent/system:/opt/buildagent/system \
+teamcity-agent
+
+docker run -e SERVER_URL="http://192.168.3.211:8111/"  -u 0 -v /data/teamcity_agent/conf:/data/teamcity_agent/conf -v /var/run/docker.sock:/var/run/docker.sock  -v /opt/buildagent/work:/opt/buildagent/work -v /opt/buildagent/temp:/opt/buildagent/temp -v /opt/buildagent/tools:/opt/buildagent/tools -v /opt/buildagent/plugins:/opt/buildagent/plugins -v /opt/buildagent/system:/opt/buildagent/system teamcity-agent
+```
