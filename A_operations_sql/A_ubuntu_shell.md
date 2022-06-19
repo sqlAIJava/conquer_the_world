@@ -44,6 +44,33 @@ tmux win pane
 git tig
 tmux
 
+```conf
+server {
+    listen       8000;
+    server_name  localhost;
+
+    location / {
+        root   E:\projects\wonders\dist;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+    
+    location /base/{
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        # 后端jar启动后访问位置
+        proxy_pass http://10.1.192.237:1234/;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+```
+
 # 2020-12-1
 安装MySQL 8 
     ```

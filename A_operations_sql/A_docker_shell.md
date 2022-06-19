@@ -600,13 +600,16 @@ TODO 图片 找找再放
 ## 安装teamcity笔记
 ```shell
 docker run --name teamcity-server-instance  \
--v /docker/data/teamcity_server/datadir:/data/teamcity_server/datadir \
--v /docker/opt/teamcity/logs:/opt/teamcity/logs  \
+-d \
+-u 0 \
+-v /home/docker/teamcity_server/data/teamcity_server/datadir:/data/teamcity_server/datadir \
+-v /home/docker/teamcity_server/opt/teamcity/logs:/opt/teamcity/logs  \
 -p 8111:8111 \
+-e TZ=Asia/Shanghai -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
 teamcity-server
 
 
-docker run -d --name teamcity-agent -e SERVER_URL="http://10.1.192.238/:8111/"  \
+docker run -d --name teamcity-agent -e SERVER_URL="10.1.192.238:8111"  \
 -u 0 \
 -v /docker/teamcity_agent/data/teamcity_agent/conf:/data/teamcity_agent/conf \
 -v /docker/teamcity_agent/var/run/docker.sock:/var/run/docker.sock  \
@@ -618,4 +621,27 @@ docker run -d --name teamcity-agent -e SERVER_URL="http://10.1.192.238/:8111/"  
 teamcity-agent
 
 docker run -e SERVER_URL="http://192.168.3.211:8111/"  -u 0 -v /data/teamcity_agent/conf:/data/teamcity_agent/conf -v /var/run/docker.sock:/var/run/docker.sock  -v /opt/buildagent/work:/opt/buildagent/work -v /opt/buildagent/temp:/opt/buildagent/temp -v /opt/buildagent/tools:/opt/buildagent/tools -v /opt/buildagent/plugins:/opt/buildagent/plugins -v /opt/buildagent/system:/opt/buildagent/system teamcity-agent
+
+
+docker run -d --name teamcity-agent -e SERVER_URL="10.1.192.238:8111"  \
+-u 0 \
+-v /home/docker/teamcity_agent/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+-v /opt/buildagent/work:/opt/buildagent/work \
+-v /opt/buildagent/temp:/opt/buildagent/temp \
+-v /opt/buildagent/tools:/opt/buildagent/tools \
+-v /opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /opt/buildagent/system:/opt/buildagent/system \
+teamcity-agent
+```
+
+## docker install nginx
+```
+> 得先确保 /docker/nginx/host/path/nginx.conf 这个文件有，可以先启动一个简单的，将/etc/nginx/nginx.conf拷贝出来
+
+docker run -d --name nginx-wegov3-frontend \
+-v /docker/nginx/usr/share/nginx/html:/usr/share/nginx/html:ro \
+-p 20101:80 \
+-v /docker/nginx/host/path/nginx.conf:/etc/nginx/nginx.conf:ro \
+nginx
 ```
