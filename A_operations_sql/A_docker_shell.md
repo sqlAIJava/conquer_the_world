@@ -645,3 +645,53 @@ docker run -d --name nginx-wegov3-frontend \
 -v /docker/nginx/host/path/nginx.conf:/etc/nginx/nginx.conf:ro \
 nginx
 ```
+
+# docker 时间 解决 办法
+```
+docker run 
+```
+-e TZ=Asia/Shanghai -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+```
+
+Dockerfile
+```
+方法1
+添加时区环境变量，亚洲，上海
+ENV TimeZone=Asia/Shanghai
+使用软连接，并且将时区配置覆盖/etc/timezone
+RUN ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone
+
+方法2
+CentOS
+RUN echo "Asia/shanghai" > /etc/timezone
+Ubuntu
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+docker-compose
+```
+第一种方式(推荐)：
+environment:
+  TZ: Asia/Shanghai
+
+第二种方式：
+environment:
+  SET_CONTAINER_TIMEZONE=true
+  CONTAINER_TIMEZONE=Asia/Shanghai
+
+第三种方式：
+volumes:
+  - /etc/timezone:/etc/timezone
+  - /etc/localtime:/etc/localtime
+```
+
+已经起来的容器器
+```
+docker cp /usr/share/zoneinfo [容器id] : /usr/share/
+docker exec -it [容器id] bash
+ln -s 源文件 目标文件: 为某一个文件在另外一个位置建立一个同不的链接
+ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+echo "Asia/Shanghai" > /etc/timezone
+date
+```
+```
