@@ -20,3 +20,7 @@ str = or or or
 # 2021-1-15
 启动服务器文件服务器 可指定端口  可绑定 ip 
 python -m http.server 8000 --bind 127.0.0.1 --directory /tmp/
+
+# 2022-6-29
+python2.7启动一个文件服务器
+python -m SimpleHTTPServer 8000 --bind 127.0.0.1 --directory /tmp/
