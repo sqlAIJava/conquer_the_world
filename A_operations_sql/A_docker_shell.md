@@ -695,3 +695,21 @@ echo "Asia/Shanghai" > /etc/timezone
 date
 ```
 ```
+
+## Java SpringBoot Dockerfile Demo
+
+```Dockerfile
+touch Dockerfile
+
+tee Dockerfile <<-'EOF'
+FROM openjdk:8
+MAINTAINER "sqlong sheqianlong@wondersgroup.com"
+ENV TimeZone=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone
+RUN echo "Asia/shanghai" > /etc/timezone
+COPY *.jar /usr/src/wegov3_springboot/
+COPY *.lic /usr/src/wegov3_springboot/
+WORKDIR /usr/src/wegov3_springboot
+CMD ["java", "-jar", "wegovb-0.0.1-SNAPSHOT.jar","--wonders.license.license-file-name=fingerprint.lic"]
+EOF
+```
