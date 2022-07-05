@@ -738,3 +738,114 @@ Barrier
      
      DBConnection set get
 ```
+
+# 23种 设计模式
+
+* 架构师 思考
+
+## 工厂模式
+
+* 简单工厂模型 不是 23种的一种 是创建型模式
+```
+     Calendar 日历类 、 LoggerFactory 日志工厂 等
+
+     只用传入标识，比较生成比较少的实体对象，内部业务不易发生改变
+
+     Class<? extends ICouse> ， 反射 ， 各种直接判断
+
+     具体产品的工厂
+```
+
+* 工厂方法模式                  创建型模式
+```
+     定义 生产对象（抽象） 的接口（规范标准），实现类决定 生产对象类，工厂方法让类的实例化推迟到子类中进行
+
+     课程工厂 > 生产课程 > Java、Python等实现课，课程实例化由实现去做
+
+     工厂的工厂
+```
+
+* 抽象工厂模式                   创建型模式
+```
+     工厂接口定义 一系列相关或者相互依赖对象，无须指定他们具体对的类。
+
+     产品族(学院工厂) + 产品等级结构(接口定义:::直播、录播、笔记、课将)
+
+     用接口还是抽象类 取决 调用定义方法前后 有(用接口) 无(用抽象类) 公共逻辑
+
+     缺点: 接口顶层 一改 都要改
+
+     复杂产品的工厂
+```
+
+* Spring 中的 抽象工厂
+```
+     AbastractFactory
+     AnnotationApplicationContext
+     ...
+```
+
+* SpringBoot 中无配置 默认Annotation + yml
+
+## 还有 几个基础模式 没看
+
+## 代理模式
+
+* 为其他对象提供一种代理，以控制对这个对象的访问  ，中介作用                   结构型模式
+
+* 静态代理
+```
+     显示声明被代理对象
+
+     房屋中介 显示 房产 ，静态代理 房屋中介 不能 显示找 汽车
+```
+
+* 动态代理 ~ AOP         Spring 用了 JDK + CGlib（可强制）
+```java
+     CGlab
+          通过继承，没有用到反射（效率高） 有Fast类，对目标类没有要求，但会忽略final修饰的方法
+          引入Cglib第三方库
+          Enhabcer setSuperclass(clazz)
+                   setCallback(this)
+                   create();
+          implements MethodInterceptor
+               intercept()
+                    > before()
+                    > mehtodProxy.invokeSuper()
+                    > after();
+
+     JDK动态代理
+          通过实现 流程和CGLab一样 比CGlab低
+          Proxy.newProxyInstance(...必须是接口（反射）...)
+          implements InvocationHandler
+               invocat()
+                    > before();
+                    > method.invoke()
+                    > after();
+```
+
+**分析JDK动态代理**
+```java
+     ProxyCenerator.generateProxyClass(...)
+
+     InvocationHandler{ invoke() }
+     Proxy{ newProxyInstance() }
+          > 生成新的字符串java类源码
+          > 保存对应得源码类名文件.java
+          > 编译.java 成 .class
+          > 加载.class 进入 JVM
+          > 返回新的代理对象
+     ClassLoader extends ClassLoader{ findClass(){} }
+          > 把java文件变成 Java内存认识的字节码数组 通过类加载器变成Class对象 > 
+          > defineClass(...)
+```
+
+* 应用场景
+```
+     动态代理（架构师）
+          系统监控
+          日志监控
+          动态数据源数据库切换
+          分库分表的规则
+          权限设置
+```
