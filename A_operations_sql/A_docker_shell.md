@@ -599,13 +599,14 @@ TODO 图片 找找再放
 
 ## 安装teamcity笔记
 ```shell
-docker run --name teamcity-server-instance  \
+# 正式
+docker run --name teamcity-server-instance-2022-04-2  \
 -d \
 -u 0 \
 -v /home/docker/teamcity_server/data/teamcity_server/datadir:/data/teamcity_server/datadir \
 -v /home/docker/teamcity_server/opt/teamcity/logs:/opt/teamcity/logs  \
 -p 8111:8111 \
--e TZ=Asia/Shanghai -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
 teamcity-server
 
 
@@ -623,7 +624,8 @@ teamcity-agent
 docker run -e SERVER_URL="http://192.168.3.211:8111/"  -u 0 -v /data/teamcity_agent/conf:/data/teamcity_agent/conf -v /var/run/docker.sock:/var/run/docker.sock  -v /opt/buildagent/work:/opt/buildagent/work -v /opt/buildagent/temp:/opt/buildagent/temp -v /opt/buildagent/tools:/opt/buildagent/tools -v /opt/buildagent/plugins:/opt/buildagent/plugins -v /opt/buildagent/system:/opt/buildagent/system teamcity-agent
 
 
-docker run -d --name teamcity-agent -e SERVER_URL="10.1.192.238:8111"  \
+# 正式
+docker run -d --name teamcity-agent-2022-04-2 -e SERVER_URL="10.1.192.238:8111"  \
 -u 0 \
 -v /home/docker/teamcity_agent/data/teamcity_agent/conf:/data/teamcity_agent/conf \
 -v /var/run/docker.sock:/var/run/docker.sock  \
@@ -632,7 +634,25 @@ docker run -d --name teamcity-agent -e SERVER_URL="10.1.192.238:8111"  \
 -v /opt/buildagent/tools:/opt/buildagent/tools \
 -v /opt/buildagent/plugins:/opt/buildagent/plugins \
 -v /opt/buildagent/system:/opt/buildagent/system \
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
 teamcity-agent
+```
+
+## docker 仓库加速器
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://kj4p419h.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+## docker 打包镜像 加载镜像
+```Dockerfile
+docker save name:v > .xxx.tar
+docker load < .xxx.tar
 ```
 
 ## docker install nginx
