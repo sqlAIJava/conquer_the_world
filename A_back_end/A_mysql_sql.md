@@ -55,3 +55,8 @@ DBMS中一个排序的数据结构
 ```
 
 ```
+
+# Linux环境中Mysql区分表名大小写
+my.cnf
+lower_case_table_names = 0或1
+其中 0：区分大小写，1：不区分大小写
