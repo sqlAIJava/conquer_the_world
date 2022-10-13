@@ -20,7 +20,7 @@ server {
 443 ssl 端口 = https
 
 # 一个server部署多个前端 = 配置多个location = 配置多个server
-```
+```conf
 location / {
         proxy_pass http://127.0.0.1:20005;
         # root   E:\projects\wonders\xylink_dist;
@@ -29,8 +29,12 @@ location / {
 
 location /rtc {
         # 别名
-        alias   E:\projects\wonders\xylink_dist;
-        # index  index.html index.htm;
+        alias   C:\\A_sql\\A_nginx\\nginx-1.21.6\\alarm;
+        # 在docker -p 代理时 防止 路由 重定向
+        absolute_redirect off;
+        # 防止前缀路由刷新404
+        try_files $uri $uri/ /rtc/;
+        index  index.html index.htm;
 }
 
 location /appapi/ {
@@ -40,6 +44,10 @@ location /appapi/ {
         proxy_set_header X-NginX-Proxy true;
 
         proxy_pass http://127.0.0.1:20000/;
+
+        # 匹配url中带有api的，并转发到 http://localhost:8080/api
+        # rewrite  ^/appapi/(.*)$ /$1 break;         //利用正则进行匹配
+        # proxy_pass http://localhost:8080;      //转发的参数设定
     }
 ```
 
