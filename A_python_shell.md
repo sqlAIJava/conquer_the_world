@@ -24,3 +24,5 @@ python -m http.server 8000 --bind 127.0.0.1 --directory /tmp/
 # 2022-6-29
 python2.7启动一个文件服务器
 python -m SimpleHTTPServer 8000 --bind 127.0.0.1 --directory /tmp/
+python -m SimpleHTTPServer 8000 --bind 172.21.48.174 --directory /tmp/
+python -m http.server 8000 --bind 172.21.48.174 --directory /tmp/

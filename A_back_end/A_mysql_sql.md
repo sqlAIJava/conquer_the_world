@@ -60,3 +60,17 @@ DBMS中一个排序的数据结构
 my.cnf
 lower_case_table_names = 0或1
 其中 0：区分大小写，1：不区分大小写
+
+
+# Linux 初始化MySQL纪要
+```
+cd /application/mysql-8.0.31
+bin/mysqld --initialize --user=root --datadir=/application/mysql-8.0.31/data --basedir=/application/mysql-8.0.31
+
+initialize-insecure[空密码]
+bin/mysqld --defaults-file=/etc/my.cnf --datadir=/application/mysql-8.0.31/data --basedir=/application/mysql-8.0.31 --user=root --initialize-insecure
+ 
+# basedir 指 mysql 软件安装的的目录，需要预选存在
+
+# datadir 指数据库数据文件所在目录，不需要预先存在
+```

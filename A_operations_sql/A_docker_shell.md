@@ -636,6 +636,107 @@ docker run -d --name teamcity-agent-2022-04-2 -e SERVER_URL="10.1.192.238:8111" 
 -v /opt/buildagent/system:/opt/buildagent/system \
 -e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
 teamcity-agent
+
+
+# Test 挂一样的 名字改一下
+docker run -d --name teamcity-agent-fourth-2022-04-2 -e SERVER_URL="10.1.192.238:8111"  \
+-u 0 \
+-v /home/docker/teamcity_agent_fourth/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+-v /opt/buildagent/work:/opt/buildagent/work \
+-v /opt/buildagent/temp:/opt/buildagent/temp \
+-v /opt/buildagent/tools:/opt/buildagent/tools \
+-v /opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /opt/buildagent/system:/opt/buildagent/system \
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
+teamcity-agent
+
+
+ /opt/buildagent/temp
+# Test Second 
+docker run -d -m 1G --memory-swap 1.5G --name teamcity-agent-second-2022-04-2 -e SERVER_URL="10.1.192.238:8111"  \
+-u 0 \
+-v /home/docker/teamcity_agent_second/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+-v /home/docker/teamcity_agent_second/opt/buildagent/work:/opt/buildagent/work \
+-v /home/docker/teamcity_agent_second/opt/buildagent/temp:/opt/buildagent/temp \
+-v /home/docker/teamcity_agent_second/opt/buildagent/tools:/opt/buildagent/tools \
+-v /home/docker/teamcity_agent_second/opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /home/docker/teamcity_agent_second/opt/buildagent/system:/opt/buildagent/system \
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
+teamcity-agent
+
+# Test Third 
+docker run -d -m 1.2G --memory-swap 1.8G --name teamcity-agent-third-2022-04-2 -e SERVER_URL="10.1.192.238:8111"  \
+-u 0 \
+-v /home/docker/teamcity_agent_third/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+
+-v /home/docker/teamcity_agent_third/opt/buildagent/work:/opt/buildagent/work \
+-v /home/docker/teamcity_agent_third/opt/buildagent/temp:/opt/buildagent/temp \
+-v /home/docker/teamcity_agent_third/opt/buildagent/tools:/opt/buildagent/tools \
+-v /home/docker/teamcity_agent_third/opt/buildagent/plugins:/opt/buildagent/plugins \
+-v /home/docker/teamcity_agent_third/opt/buildagent/system:/opt/buildagent/system \
+
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
+teamcity-agent
+```
+
+## 重构TeamCity Agent工作路劲
+```Dockerfile
+FROM jetbrains/teamcity-agent:latest
+
+VOLUME [/home/docker/teamcity_agent_A/opt/buildagent/work]
+
+VOLUME [/home/docker/teamcity_agent_A/opt/buildagent/system]
+
+VOLUME [/home/docker/teamcity_agent_A/opt/buildagent/temp]
+
+VOLUME [/home/docker/teamcity_agent_A/opt/buildagent/tools]
+
+VOLUME [/home/docker/teamcity_agent_A/opt/buildagent/plugins]
+```
+**构建指令**
+```docker
+docker build -t teamcity-agent-mi_a .
+```
+### 重构后启动-v
+```shell
+docker run -d -m 1.2G --memory-swap 1.8G --name teamcity-agent-A -e SERVER_URL="10.1.192.238:8111"  \
+-u 0 \
+-v /home/docker/teamcity_agent_A/data/teamcity_agent/conf:/data/teamcity_agent/conf \
+-v /var/run/docker.sock:/var/run/docker.sock  \
+-v /home/docker/teamcity_agent_A/opt/buildagent/work:/home/docker/teamcity_agent_A/opt/buildagent/work \
+-v /home/docker/teamcity_agent_A/opt/buildagent/temp:/home/docker/teamcity_agent_A/opt/buildagent/temp \
+-v /home/docker/teamcity_agent_A/opt/buildagent/tools:/home/docker/teamcity_agent_A/opt/buildagent/tools \
+-v /home/docker/teamcity_agent_A/opt/buildagent/plugins:/home/docker/teamcity_agent_A/opt/buildagent/plugins \
+-v /home/docker/teamcity_agent_A/opt/buildagent/system:/home/docker/teamcity_agent_A/opt/buildagent/system \
+-e TZ=Asia/Shanghai -v /etc/localtime:/etc/localtime:ro \
+teamcity-agent-mi_a
+```
+### docker image 获取 dockerfile
+```shell
+cat > Obtain\_dockerfile.sh <<-'EOF'
+
+#!/bin/bash
+
+export PATH=$PATH
+
+if [ $# -eq 1 ];then
+
+        docker history --format {{.CreatedBy}} --no-trunc=true $1 |sed "s/\/bin\/sh\ -c\ \#(nop)\ //g"|sed "s/\/bin\/sh\ -c/RUN/g" | tac
+
+    else
+
+        echo "sh Obtain\_dockerfile.sh $DOCKER\_IMAGE"
+
+fi
+
+EOF
+
+
+docker history --format {{.CreatedBy}} --no-trunc=true jetbrains/teamcity-agent:2022.04.2 |sed "s/\/bin\/sh\ -c\ \#(nop)\ //g"|sed "s/\/bin\/sh\ -c/RUN/g" | tac
+docker history --format {{.CreatedBy}} --no-trunc=true node:lts |sed "s/\/bin\/sh\ -c\ \#(nop)\ //g"|sed "s/\/bin\/sh\ -c/RUN/g" | tac
 ```
 
 ## docker 仓库加速器

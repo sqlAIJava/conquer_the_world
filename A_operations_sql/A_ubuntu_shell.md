@@ -380,3 +380,24 @@ claer 回车
 
 # 查询历史指令
 history | grep <seach name>
+
+
+# 查看磁盘空间
+```
+du -ah --max-depth=1   
+
+df -h
+```
+
+# lsof查看占用端口的进程
+```
+lsof -i:8080
+
+进程号
+lsof -i:8080 -t
+```
+
+# 使用kill + lsof一句话删除占用端口的所有进程
+```
+sudo kill -9 $(lsof -i:8080 -t)
+```

@@ -14,3 +14,10 @@ taskkill /T /F /PID LISTENING       /F强制 /T子进程
 # 2020-12-3
 创建文件
 fsutil file createnew <filename> <length>
+
+# 2022-10-15
+java -jar 启动报错 nacos 配置文件找不到
+-Dfile.encoding=UTF-8
+```
+java -Dfile.encoding=UTF-8 -jar xx.jar
+```

@@ -978,3 +978,11 @@ Barrier
           
 
 ```
+
+## 解决报错 org.yaml.snakeyaml.error.YAMLException: java.nio.charset.MalformedInputException: Input length = 1 
+用 utf-8 UTF-8都行
+要 -Dfile.encoding
+不能 -Dfile.encode
+```
+java -Dfile.encoding=UTF-8 -jar xx.jar
+```
