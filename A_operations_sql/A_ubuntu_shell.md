@@ -206,6 +206,12 @@ ps aux | grep <gun>
 查看网咯端口又没被占用
 netstat -anp | grep 8000
 
+# 根据PID找端口
+netstat -antup|grep <PID>
+
+# 端口被谁占用
+lsof -i:<port>
+
 # 2021-1-11
 查看ip 地址
 ip addr
